@@ -596,6 +596,10 @@ img { max-width: 100%; }
   .food-guide-category { border-left-width: 3px; }
 }
 
+@media (max-width: 950px) {
+  .activity-map-open { display: none; }
+}
+
 @media (max-width: 760px) {
   .osaka-transport-guide { margin-top: 28px; padding: 21px 16px; }
   .transport-guide-heading h2 { font-size: 21px; }

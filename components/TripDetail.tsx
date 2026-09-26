@@ -59,7 +59,7 @@ function ActivityCard({ activity, number, date, year }: { activity: TripActivity
         </div>}
         {mapLink && <a className="activity-map-cta" href={mapLink.href} target="_blank" rel="noopener noreferrer" aria-label={`${mapLink.origin}에서 ${mapLink.destination}까지, ${mapLink.dateTimeLabel} 대중교통 경로를 Google 지도에서 확인`}>
           <span className="activity-map-icon" aria-hidden="true">↗</span>
-          <span className="activity-map-copy"><strong>Google 지도에서 대중교통 확인</strong><small>{mapLink.origin} → {mapLink.destination} · {mapLink.dateTimeLabel}</small></span>
+          <span className="activity-map-copy"><strong>Google 지도 대중교통 확인</strong><small>{mapLink.origin} → {mapLink.destination} · {mapLink.dateTimeLabel}</small></span>
           <span className="activity-map-open">새 페이지 열기</span>
         </a>}
         {activity.booking && (
