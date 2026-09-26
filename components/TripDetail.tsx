@@ -6,10 +6,12 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { OsakaFoodGuide } from "@/components/OsakaFoodGuide";
 import { OsakaTransportGuide } from "@/components/OsakaTransportGuide";
+import { ReadableText } from "@/components/ReadableText";
 import { defaultOsakaFoodGuide } from "@/data/osaka-food-guide";
 import { defaultOsakaTransportGuide } from "@/data/osaka-transport-guide";
 import type { TripActivity, TripDocument, TripPhoto } from "@/data/trip-types";
 import { getTransportPayment, transportPaymentLabels } from "@/lib/transport-payment";
+import { getTransitMapLink } from "@/lib/google-maps-transit";
 
 const bookingTone = {
   required: "must",
@@ -35,19 +37,10 @@ function PhotoGallery({ photos }: { photos: TripPhoto[] }) {
   ))}</div>;
 }
 
-function ActivityDescription({ activity, isTransit }: { activity: TripActivity; isTransit: boolean }) {
-  const chunks = isTransit ? activity.description.split(/\s+(?=\d+\)\s)/).filter(Boolean) : [activity.description];
-  if (chunks.length > 1 && /^\d+\)\s/.test(chunks[0])) {
-    return <ol className="activity-description activity-transit-steps">
-      {chunks.map((chunk, index) => <li key={`${activity.id ?? activity.title}-${index}`}>{chunk.replace(/^\d+\)\s*/, "")}</li>)}
-    </ol>;
-  }
-  return <p className="activity-description">{activity.description}</p>;
-}
-
-function ActivityCard({ activity, number }: { activity: TripActivity; number: number }) {
+function ActivityCard({ activity, number, date, year }: { activity: TripActivity; number: number; date: string; year: number }) {
   const isTransit = activity.title.startsWith("이동 ·") || activity.title.startsWith("귀환 ·");
   const transportPayment = getTransportPayment(activity);
+  const mapLink = getTransitMapLink(activity, date, year);
   return (
     <li className="activity-row">
       <div className="activity-time"><span>{activity.time}</span></div>
@@ -59,18 +52,23 @@ function ActivityCard({ activity, number }: { activity: TripActivity; number: nu
         </div>
         <h4>{activity.title}</h4>
         {activity.location && <p className="activity-place"><span aria-hidden="true">⌖</span> {activity.location}</p>}
-        <ActivityDescription activity={activity} isTransit={isTransit} />
+        <ReadableText text={activity.description} className="activity-description" />
         {activity.transport && <div className={`activity-transport activity-transport--${isTransit ? transportPayment : "facility"}`}>
           <div className="activity-transport-head"><span className="transport-payment-badge">{isTransit ? transportPaymentLabels[transportPayment] : "시설 · 입장 정보"}</span><strong>{isTransit ? "🚇 이동·결제" : "🎟 이용 안내"}</strong></div>
-          <p>{activity.transport}</p>
+          <ReadableText text={activity.transport} className="activity-transport-copy" />
         </div>}
+        {mapLink && <a className="activity-map-cta" href={mapLink.href} target="_blank" rel="noopener noreferrer" aria-label={`${mapLink.origin}에서 ${mapLink.destination}까지, ${mapLink.dateTimeLabel} 대중교통 경로를 Google 지도에서 확인`}>
+          <span className="activity-map-icon" aria-hidden="true">↗</span>
+          <span className="activity-map-copy"><strong>Google 지도에서 대중교통 확인</strong><small>{mapLink.origin} → {mapLink.destination} · {mapLink.dateTimeLabel}</small></span>
+          <span className="activity-map-open">새 페이지 열기</span>
+        </a>}
         {activity.booking && (
           <div className="activity-reservation">
-            <div><strong>{activity.booking.label}</strong><p>{activity.booking.detail}</p></div>
+            <div><strong>{activity.booking.label}</strong><ReadableText text={activity.booking.detail} className="activity-reservation-copy" /></div>
             {activity.booking.url && <a href={activity.booking.url} target="_blank" rel="noreferrer">공식 안내 <span aria-hidden="true">↗</span></a>}
           </div>
         )}
-        {activity.note && <div className="activity-note"><strong>여행 메모</strong><p>{activity.note}</p></div>}
+        {activity.note && <div className="activity-note"><strong>여행 메모</strong><ReadableText text={activity.note} className="activity-note-copy" /></div>}
         {activity.photos && <PhotoGallery photos={activity.photos} />}
       </article>
     </li>
@@ -161,17 +159,17 @@ export function TripDetail({ trip }: { trip: TripDocument }) {
               <div className="selected-day-heading">
                 <div className="day-kicker"><span>DAY {String(activeIndex + 1).padStart(2, "0")} / {String(trip.days.length).padStart(2, "0")}</span>{day.pass && <span className="pass-label">{day.pass}</span>}</div>
                 <h2>{day.title}</h2>
-                <p>{day.subtitle}</p>
+                <ReadableText text={day.subtitle} className="day-subtitle-copy" />
                 <div className="selected-day-date"><span>{day.date}</span><small>{year} · {day.weekday}요일</small></div>
               </div>
 
               <ol className="activity-list">
-                {day.activities.map((activity, index) => <ActivityCard activity={activity} number={index + 1} key={activity.id ?? index + "-" + activity.title} />)}
+                {day.activities.map((activity, index) => <ActivityCard activity={activity} number={index + 1} date={day.date} year={Number(year)} key={activity.id ?? index + "-" + activity.title} />)}
               </ol>
               {day.activities.length === 0 && <p className="activity-empty">이날의 일정이 아직 없어요.</p>}
 
               <div className="day-memory">
-                <div><span className="memory-icon" aria-hidden="true">✳</span><div><strong>이날의 기록</strong><p>{day.note || "여행 중 남기는 메모와 사진이 일정 아래에 모입니다."}</p></div></div>
+                <div><span className="memory-icon" aria-hidden="true">✳</span><div><strong>이날의 기록</strong><ReadableText text={day.note || "여행 중 남기는 메모와 사진이 일정 아래에 모입니다."} className="day-memory-copy" /></div></div>
                 {!day.note && !day.photos?.length && <span className="memory-empty">아직 기록이 없어요</span>}
               </div>
               {day.photos && <PhotoGallery photos={day.photos} />}

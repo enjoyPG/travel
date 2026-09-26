@@ -1,4 +1,5 @@
 import type { TripTransportGuide, TripTransportGuideLine } from "@/data/trip-types";
+import { ReadableText } from "@/components/ReadableText";
 
 function RouteTable({ lines }: { lines: TripTransportGuideLine[] }) {
   return <div className="pass-table-scroll">
@@ -20,13 +21,13 @@ export function OsakaTransportGuide({ guide }: { guide: TripTransportGuide }) {
     <div className="transport-guide-heading">
       <span className="section-index">PASS &amp; TRAINS</span>
       <h2 id="transport-guide-title">{guide.title}</h2>
-      <p>{guide.intro}</p>
+      <ReadableText text={guide.intro} className="transport-guide-intro-copy" />
     </div>
 
     <div className="pass-rule-grid">
       {guide.rules.map((rule, index) => <article key={`${rule.badge}-${index}`}>
         <span className={`pass-rule-mark ${index === 0 ? "is-pass" : index === 1 ? "is-icoca" : "is-joy"}`}>{rule.badge}</span>
-        <div><strong>{rule.title}</strong><p>{rule.body}</p></div>
+        <div><strong>{rule.title}</strong><ReadableText text={rule.body} className="pass-rule-copy" /></div>
       </article>)}
     </div>
 
@@ -40,12 +41,12 @@ export function OsakaTransportGuide({ guide }: { guide: TripTransportGuide }) {
     <div className="transport-howto">
       <h3>{guide.howtoTitle}</h3>
       <ol>
-        {guide.howtoSteps.map((step, index) => <li key={`${step.title}-${index}`}><strong>{step.title}</strong><span>{step.body}</span></li>)}
+        {guide.howtoSteps.map((step, index) => <li key={`${step.title}-${index}`}><strong>{step.title}</strong><ReadableText text={step.body} className="transport-howto-copy" /></li>)}
       </ol>
     </div>
 
     <div className="transport-guide-notes">
-      {guide.notes.map((note, index) => <p key={`${note.title}-${index}`}><strong>{note.title}</strong><span>{note.body}</span></p>)}
+      {guide.notes.map((note, index) => <div className="transport-guide-note" key={`${note.title}-${index}`}><strong>{note.title}</strong><ReadableText text={note.body} className="transport-guide-note-copy" /></div>)}
       <p className="transport-guide-links">{guide.links.filter((link) => link.label.trim() && link.url.startsWith("https://")).map((link, index) => <a href={link.url} target="_blank" rel="noreferrer" key={`${link.url}-${index}`}>{link.label} <span aria-hidden="true">↗</span></a>)}</p>
     </div>
   </section>;
