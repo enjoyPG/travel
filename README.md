@@ -27,6 +27,8 @@ npm run dev
 완료한 코드 변경을 커밋하고 `origin/main`에 푸시하면 Vercel이 운영 사이트를 자동 배포합니다.
 로컬 파일을 저장하는 것만으로는 배포가 시작되지 않습니다. `.env.local`과 `.vercel`은 Git에서 제외됩니다.
 관리자 화면에서 저장한 여행 내용은 Supabase에 직접 저장되어 코드 배포 없이 반영됩니다.
+Git 연결은 Vercel 배포의 필수 조건은 아닙니다. Git 없이도 [Vercel CLI](https://vercel.com/docs/cli/deploy)로 수동 배포할 수 있지만,
+이 프로젝트에서는 `main` 푸시를 자동 배포 경로로 사용합니다. 푸시 후 Vercel의 Deployments에서 해당 커밋이 `Ready`인지 확인합니다.
 
 ## 저장 및 관리
 
