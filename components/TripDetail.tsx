@@ -6,7 +6,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { OsakaFoodGuide } from "@/components/OsakaFoodGuide";
 import { OsakaTransportGuide } from "@/components/OsakaTransportGuide";
-import { HighlightedText, ReadableText } from "@/components/ReadableText";
+import { ReadableText } from "@/components/ReadableText";
 import { defaultOsakaFoodGuide } from "@/data/osaka-food-guide";
 import { defaultOsakaTransportGuide } from "@/data/osaka-transport-guide";
 import type { TripActivity, TripDocument, TripPhoto } from "@/data/trip-types";
@@ -54,12 +54,12 @@ function ActivityCard({ activity, number, date, year, showDestinationImages }: {
         </div>
         <div className={`activity-heading-row${destinationVisual ? " activity-heading-row--visual" : ""}`}>
           <div className="activity-heading-copy">
-            <h4><HighlightedText text={activity.title} /></h4>
-            {activity.location && <p className="activity-place"><span aria-hidden="true">⌖</span> <HighlightedText text={activity.location} /></p>}
+            <h4>{activity.title}</h4>
+            {activity.location && <p className="activity-place"><span aria-hidden="true">⌖</span> {activity.location}</p>}
           </div>
           {destinationVisual && <figure className="activity-destination-preview">
             <Image src={destinationVisual.src} alt={destinationVisual.alt} width={600} height={400} sizes="(max-width: 720px) 34vw, 250px" />
-            <figcaption>장소 참고 이미지 · <HighlightedText text={destinationVisual.label} /></figcaption>
+            <figcaption>장소 참고 이미지 · {destinationVisual.label}</figcaption>
           </figure>}
         </div>
         <ReadableText text={activity.description} className="activity-description" />
@@ -69,12 +69,12 @@ function ActivityCard({ activity, number, date, year, showDestinationImages }: {
         </div>}
         {mapLink && <a className="activity-map-cta" href={mapLink.href} target="_blank" rel="noopener noreferrer" aria-label={`${mapLink.origin}에서 ${mapLink.destination}까지, ${mapLink.dateTimeLabel} 대중교통 경로를 Google 지도에서 확인`}>
           <span className="activity-map-icon" aria-hidden="true">↗</span>
-          <span className="activity-map-copy"><strong>Google 지도 대중교통 확인</strong><small><HighlightedText text={`${mapLink.origin} → ${mapLink.destination}`} /> · {mapLink.dateTimeLabel}</small></span>
+          <span className="activity-map-copy"><strong>Google 지도 대중교통 확인</strong><small>{mapLink.origin} → {mapLink.destination} · {mapLink.dateTimeLabel}</small></span>
           <span className="activity-map-open">새 페이지 열기</span>
         </a>}
         {activity.booking && (
           <div className="activity-reservation">
-            <div><strong><HighlightedText text={activity.booking.label} /></strong><ReadableText text={activity.booking.detail} className="activity-reservation-copy" /></div>
+            <div><strong>{activity.booking.label}</strong><ReadableText text={activity.booking.detail} className="activity-reservation-copy" /></div>
             {activity.booking.url && <a href={activity.booking.url} target="_blank" rel="noreferrer">공식 안내 <span aria-hidden="true">↗</span></a>}
           </div>
         )}
@@ -121,7 +121,7 @@ export function TripDetail({ trip }: { trip: TripDocument }) {
           </div>
             <div className="detail-hero-copy">
               <span>TRAVEL STORY <i /> {trip.country} · {trip.city}</span>
-              <h1>{trip.heroTitle.map((line, index) => <span key={index}><HighlightedText text={line} />{index < trip.heroTitle.length - 1 && <br />}</span>)}</h1>
+              <h1>{trip.heroTitle.map((line, index) => <span key={index}>{line}{index < trip.heroTitle.length - 1 && <br />}</span>)}</h1>
               <p>{trip.dateLabel} <span aria-hidden="true">·</span> {trip.durationLabel}</p>
             </div>
           </div>
@@ -129,7 +129,7 @@ export function TripDetail({ trip }: { trip: TripDocument }) {
 
         <div className="detail-body page-wrap">
           <section className="trip-quick-info" aria-label="여행 핵심 정보">
-            {trip.quickInfo.map((item) => <div key={item.label}><span>{item.label}</span><strong><HighlightedText text={item.value} /></strong><small><HighlightedText text={item.detail} /></small></div>)}
+            {trip.quickInfo.map((item) => <div key={item.label}><span>{item.label}</span><strong>{item.value}</strong><small>{item.detail}</small></div>)}
           </section>
 
           {isOsakaTrip && <nav className="trip-topic-tabs" id="trip-topics" role="tablist" aria-label="오사카 여행 정보">
@@ -157,7 +157,7 @@ export function TripDetail({ trip }: { trip: TripDocument }) {
                   >
                     <span className="day-button-number">{String(index + 1).padStart(2, "0")}</span>
                     <span className="day-button-date">{item.date}<small>{item.weekday}</small></span>
-                    <span className="day-button-title"><HighlightedText text={item.title} /></span>
+                    <span className="day-button-title">{item.title}</span>
                     <span className="day-button-arrow" aria-hidden="true">↗</span>
                   </button>
                 ))}
@@ -168,7 +168,7 @@ export function TripDetail({ trip }: { trip: TripDocument }) {
             <div className="day-main" role="tabpanel" id="selected-day-panel" aria-labelledby={`day-tab-${activeIndex}`} aria-live="polite">
               <div className="selected-day-heading">
                 <div className="day-kicker"><span>DAY {String(activeIndex + 1).padStart(2, "0")} / {String(trip.days.length).padStart(2, "0")}</span>{day.pass && <span className="pass-label">{day.pass}</span>}</div>
-                <h2><HighlightedText text={day.title} /></h2>
+                <h2>{day.title}</h2>
                 <ReadableText text={day.subtitle} className="day-subtitle-copy" />
                 <div className="selected-day-date"><span>{day.date}</span><small>{year} · {day.weekday}요일</small></div>
               </div>
@@ -196,9 +196,9 @@ export function TripDetail({ trip }: { trip: TripDocument }) {
             <div className="booking-summary-list">
               {trip.bookingHighlights.map((item) => (
                 item.url ? <a href={item.url} target="_blank" rel="noreferrer" className="booking-summary-row" key={item.date + item.name}>
-                  <span>{item.date}</span><strong><HighlightedText text={item.name} /></strong><small><HighlightedText text={item.status} /></small><span aria-hidden="true">↗</span>
+                  <span>{item.date}</span><strong>{item.name}</strong><small>{item.status}</small><span aria-hidden="true">↗</span>
                 </a> : <div className="booking-summary-row" key={item.date + item.name}>
-                  <span>{item.date}</span><strong><HighlightedText text={item.name} /></strong><small><HighlightedText text={item.status} /></small><span aria-hidden="true">·</span>
+                  <span>{item.date}</span><strong>{item.name}</strong><small>{item.status}</small><span aria-hidden="true">·</span>
                 </div>
               ))}
             </div>
