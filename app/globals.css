@@ -819,3 +819,153 @@ img { max-width: 100%; }
   .activity-heading-row--visual { grid-template-columns: minmax(0, 1fr) 76px; }
   .day-button { flex-basis: 144px; }
 }
+
+/* Clearer type scale and stronger text contrast across the site */
+:root {
+  --muted: #4b5a50;
+  --accent: #a64732;
+}
+
+body { font-size: 16px; line-height: 1.65; }
+button, input, textarea, select { line-height: 1.5; }
+:focus-visible { outline-color: var(--accent); }
+.section-index, .eyebrow { font-size: 12px; letter-spacing: .14em; }
+.trip-card-top { font-size: 12px; }
+.home-heading > p { color: #435248; font-size: 16px; line-height: 1.85; }
+.trip-count { color: #4b5a50; font-size: 14px; }
+.trip-card p { color: #fff; font-size: 16px; line-height: 1.75; }
+.home-caption { color: #4b5a50; font-size: 13px; line-height: 1.7; }
+.home-end { color: #4b5a50; font-size: 14px; }
+.detail-hero-copy > span { font-size: 12px; }
+.detail-hero-copy p { font-size: 14px; }
+.trip-quick-info span { font-size: 12px; }
+.trip-quick-info small { color: #4b5a50; font-size: 13px; }
+.day-sidebar-heading p { color: #4b5a50; font-size: 14px; }
+.day-button-number, .day-button-date small { font-size: 12px; }
+.day-button-title { font-size: 13px; }
+.day-sidebar-foot { color: #4b5a50; font-size: 12px; }
+.day-kicker { font-size: 12px; }
+.pass-label { color: #355b40; font-size: 12px; }
+.selected-day-heading p, .day-subtitle-copy { color: #35473b; }
+.selected-day-date small { color: #4b5a50; font-size: 12px; }
+.activity-empty { color: #435248; font-size: 14px; }
+.activity-number { color: #4f5e54; font-size: 12px; }
+.booking-pill { font-size: 12px; }
+.booking-must { color: #873b2b; }
+.booking-onsite { color: #704c12; }
+.booking-easy { color: #315e40; }
+.booking-check { color: #514279; }
+.activity-place { color: #405c4b; font-size: 13px; }
+.activity-description { color: #33463a; font-size: 15px; line-height: 1.85; }
+.activity-transport-head strong { font-size: 12px; }
+.transport-payment-badge { font-size: 12px; }
+.activity-transport p { color: inherit; font-size: 13px; line-height: 1.8; }
+.activity-reservation strong { font-size: 13px; }
+.activity-reservation p { color: #435248; font-size: 12px; }
+.activity-reservation a { color: #8e3b2b; font-size: 12px; }
+.activity-note strong { font-size: 12px; }
+.activity-note p { font-size: 14px; line-height: 1.8; }
+.trip-photo-gallery figcaption { color: #435248; font-size: 12px; }
+.day-memory strong { font-size: 14px; }
+.day-memory p, .memory-empty { color: #405c49; font-size: 12px; }
+.day-pagination button { font-size: 14px; }
+.day-pagination span { color: #4b5a50; font-size: 13px; }
+.booking-summary-heading p { color: #435248; font-size: 14px; line-height: 1.8; }
+.booking-summary-row > span:first-child { font-size: 14px; }
+.booking-summary-row strong { font-size: 14px; }
+.booking-summary-row small { color: #4b5a50; font-size: 12px; }
+.detail-footer { color: #4b5a50; font-size: 13px; }
+
+.admin-back, .admin-login-fallback summary, .admin-logout { color: #435248; font-size: 13px; }
+.admin-intro p, .admin-panel > p { color: #435248; font-size: 15px; line-height: 1.8; }
+.admin-login-form label, .admin-field label, .editor-booking > label { font-size: 14px; }
+.admin-login-form input, .admin-field input, .admin-field textarea,
+.editor-inline-fields input, .editor-booking select { font-size: 15px; }
+.admin-login-form input::placeholder, .admin-field input::placeholder,
+.admin-field textarea::placeholder, .editor-inline-fields input::placeholder,
+.editor-guide-row input::placeholder, .editor-guide-step input::placeholder,
+.editor-guide-link input::placeholder { color: #626f65; opacity: 1; }
+.admin-login-form button, .admin-form-actions button,
+.editor-toolbar-actions > button, .editor-bottom-actions > button { font-size: 14px; }
+.admin-login-form p, .form-error { font-size: 13px; }
+.admin-primary-link, .admin-trip-delete { font-size: 13px; }
+.admin-trip-status, .admin-trip-list small { font-size: 12px; }
+.admin-field small, .editor-photos > small { color: #435248; font-size: 12px; line-height: 1.7; }
+.admin-form-actions p, .editor-toolbar p, .editor-section-heading p { color: #435248; font-size: 13px; line-height: 1.75; }
+.editor-publish { font-size: 13px; }
+.editor-status { font-size: 13px; }
+.editor-upload, .editor-inline-fields button, .editor-booking-summary > button,
+.editor-guide-group-heading button, .editor-guide-row > button,
+.editor-guide-line > button, .editor-guide-step > button, .editor-guide-link > button,
+.editor-bottom-actions a { color: #8e3b2b; font-size: 12px; }
+.editor-guide-line input, .editor-guide-line select, .editor-guide-row input,
+.editor-guide-row textarea, .editor-guide-step input, .editor-guide-step textarea,
+.editor-guide-link input, .editor-guide-group-heading input { font-size: 13px; }
+.editor-day-tabs small { font-size: 12px; }
+.editor-day-tabs span { font-size: 12px; }
+.editor-activity-top strong { color: #8e3b2b; font-size: 12px; }
+.editor-activity-top button { font-size: 12px; }
+.editor-photo-list figcaption { color: #435248; font-size: 12px; }
+.editor-photo-fields input { font-size: 12px; }
+
+.site-nav { font-size: 14px; }
+.hero-back, .hero-edit-link { font-size: 13px; }
+.activity-map-copy strong { font-size: 14px; }
+.activity-map-copy small { color: #294c69; font-size: 12px; }
+.activity-map-open { color: #123e63; font-size: 12px; }
+.pass-rule-grid strong { font-size: 14px; }
+.pass-rule-copy { color: #34483a; font-size: 13px; line-height: 1.8; }
+.pass-rule-mark { font-size: 11px; }
+.pass-route-tables h3 { font-size: 16px; }
+.pass-route-table { font-size: 13px; }
+.pass-route-table th { color: #304b38; font-size: 12px; }
+.pass-route-table td { color: #35483b; font-size: 13px; }
+.pass-route-table td strong { font-size: 13px; }
+.route-status { font-size: 12px; }
+.route-code { font-size: 11px; }
+.transport-howto h3 { font-size: 16px; }
+.transport-howto > ol { color: #33473a; font-size: 14px; line-height: 1.85; }
+.transport-guide-notes p { color: #33473a; }
+.transport-guide-note { color: #33473a; font-size: 13px; line-height: 1.85; }
+.transport-guide-note > strong { color: #26362f; }
+.transport-guide-links a, .food-guide-sources a { color: #294f37; font-size: 13px; }
+.food-guide-heading > .food-guide-intro-copy { color: #33463a; }
+.food-category-heading .food-category-copy { color: #35483b; font-size: 14px; }
+.food-dish-number { color: #8e3b2b; font-size: 11px; }
+.trip-topic-tabs button > span { font-size: 11px; }
+.food-dish-title h4 { font-size: 16px; }
+.food-dish-title > span { color: #435248; font-size: 12px; }
+.food-dish-copy { color: #33463a; font-size: 14px; line-height: 1.85; }
+.food-guide-sources > strong { font-size: 13px; }
+.pass-table-scroll::after { color: #34483a; font-size: 12px; }
+
+@media (max-width: 720px) {
+  .site-nav { font-size: 13px; }
+  .trip-card-top { font-size: 11px; }
+  .trip-card p { font-size: 13px; }
+  .trip-count { font-size: 13px; }
+  .detail-hero-copy > span { font-size: 11px; }
+  .detail-hero-copy p { font-size: 12px; }
+  .trip-quick-info span { font-size: 11px; }
+  .trip-quick-info small { font-size: 12px; }
+  .day-button-title { font-size: 12px; }
+  .activity-description { font-size: 14px; }
+  .activity-map-copy strong { font-size: 13px; }
+  .activity-map-copy small { font-size: 12px; }
+  .transport-guide-heading > .transport-guide-intro-copy,
+  .transport-howto > ol { font-size: 14px; }
+  .pass-route-table th, .pass-route-table td { font-size: 12px; }
+  .food-dish-title h4 { font-size: 15px; }
+  .food-dish-copy, .food-dish-card > p { font-size: 13px; }
+  .hero-back, .hero-edit-link { font-size: 12px; }
+}
+
+@media (max-width: 430px) {
+  .site-nav { font-size: 12px; }
+  .trip-card p { font-size: 12px; }
+  .detail-hero-copy > span { font-size: 10px; }
+  .day-button-title { font-size: 12px; }
+  .activity-description { font-size: 14px; }
+  .activity-destination-preview figcaption { font-size: 10px; }
+  .food-dish-copy, .food-dish-card > p { font-size: 13px; }
+}
