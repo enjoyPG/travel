@@ -21,6 +21,13 @@ npm install
 npm run dev
 ```
 
+## 자동 배포
+
+이 저장소의 `main` 브랜치는 기존 Vercel 프로젝트 `travel-film-archive`에 연결되어 있습니다.
+완료한 코드 변경을 커밋하고 `origin/main`에 푸시하면 Vercel이 운영 사이트를 자동 배포합니다.
+로컬 파일을 저장하는 것만으로는 배포가 시작되지 않습니다. `.env.local`과 `.vercel`은 Git에서 제외됩니다.
+관리자 화면에서 저장한 여행 내용은 Supabase에 직접 저장되어 코드 배포 없이 반영됩니다.
+
 ## 저장 및 관리
 
 - `supabase/schema.sql`의 여행 테이블, 읽기 정책, 공개 사진 버킷을 Supabase에 적용했습니다.

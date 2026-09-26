@@ -7,3 +7,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Deployment workflow
+
+This repository is connected to the existing Vercel project `travel-film-archive`.
+For completed website changes intended for production, commit the finished work and push
+`main` to `origin` (`https://github.com/enjoyPG/travel.git`). Vercel deploys pushes to
+the production branch automatically. Do not push incomplete work or force-push.
+Keep `.env.local`, `.vercel`, and other credentials out of Git.
