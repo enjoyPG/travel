@@ -29,6 +29,9 @@ npm run dev
 관리자 화면에서 저장한 여행 내용은 Supabase에 직접 저장되어 코드 배포 없이 반영됩니다.
 Git 연결은 Vercel 배포의 필수 조건은 아닙니다. Git 없이도 [Vercel CLI](https://vercel.com/docs/cli/deploy)로 수동 배포할 수 있지만,
 이 프로젝트에서는 `main` 푸시를 자동 배포 경로로 사용합니다. 푸시 후 Vercel의 Deployments에서 해당 커밋이 `Ready`인지 확인합니다.
+Vercel CLI, Codex의 Vercel 연결, 브라우저 로그인, GitHub 자동 배포 연결은 인증 경로가 서로 다릅니다.
+CLI 명령이 없거나 CLI·Codex 연결에서 권한 오류가 나더라도 GitHub 자동 배포가 가능한지는 별도로 확인해야 합니다.
+배포가 막힐 때의 점검 순서와 완료 기준은 [AGENTS.md](./AGENTS.md#vercel-deployment-workflow)에 명시했습니다.
 
 ## 저장 및 관리
 
