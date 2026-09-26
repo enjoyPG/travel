@@ -652,3 +652,170 @@ img { max-width: 100%; }
   .activity-destination-preview { height: 78px; }
   .activity-destination-preview figcaption { font-size: 8px; }
 }
+
+/* Small-screen layout refinements */
+@media (max-width: 720px) {
+  .page-wrap { width: calc(100% - 32px); }
+
+  .site-header { height: auto; min-height: 64px; }
+  .site-header-inner {
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+    gap: 7px 12px;
+    padding-block: 10px;
+  }
+  .site-brand { min-height: 38px; }
+  .site-nav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2px 12px;
+    padding-top: 7px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+  }
+  .site-nav a { min-height: 36px; display: inline-flex; align-items: center; }
+  .site-nav-trip { display: inline-flex; }
+
+  .home-heading { padding-block: 29px 21px; }
+  .home-heading h1 { font-size: clamp(36px, 9vw, 54px); line-height: 1.17; }
+  .home-heading > p { margin-top: 16px; line-height: 1.8; }
+  .trip-picker { padding-bottom: 52px; }
+  .trip-card { min-height: 430px; border-radius: 16px; }
+  .trip-card-top { top: 18px; left: 18px; right: 18px; gap: 8px; font-size: 9px; }
+  .trip-card-top span:first-child { padding: 7px 10px; }
+  .trip-card-top span:last-child { max-width: 55%; text-align: right; line-height: 1.5; }
+  .trip-card-bottom { left: 18px; right: 18px; bottom: 19px; align-items: end; gap: 10px; }
+  .trip-card-copy { min-width: 0; }
+  .trip-card h3 { margin: 9px 0 7px; font-size: clamp(29px, 8vw, 37px); line-height: 1.18; }
+  .trip-card p { max-width: 240px; font-size: 12px; line-height: 1.65; }
+  .trip-card-arrow { width: 46px; height: 46px; font-size: 23px; }
+  .home-caption { text-align: left; line-height: 1.65; }
+  .home-end { gap: 12px; flex-wrap: wrap; }
+
+  .detail-hero { height: 285px; }
+  .detail-hero-inner { padding-block: 15px 24px; }
+  .detail-hero-copy h1 { max-width: 100%; font-size: clamp(34px, 9vw, 43px); line-height: 1.2; }
+  .detail-hero-copy p { font-size: 11px; line-height: 1.6; }
+  .trip-quick-info > div, .trip-quick-info > div + div { padding-block: 13px; }
+
+  .itinerary-layout { padding-top: 34px; }
+  .day-sidebar-heading h2 { margin-top: 8px; }
+  .day-list { scroll-snap-type: x proximity; }
+  .day-button { flex: 0 0 154px; scroll-snap-align: start; }
+  .day-button-title { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; white-space: normal; line-height: 1.4; }
+  .day-main { padding: 13px; }
+  .activity-card { padding: 16px; border-radius: 13px; }
+  .activity-card-top { align-items: start; }
+  .booking-pill { white-space: normal; text-align: center; line-height: 1.35; }
+  .activity-description { font-size: 13px; line-height: 1.8; }
+  .activity-transport { padding: 12px; }
+  .activity-transport p { font-size: 12px; }
+  .activity-map-cta { min-width: 0; }
+  .activity-map-copy { overflow-wrap: anywhere; }
+  .activity-reservation { min-width: 0; padding: 13px; overflow-wrap: anywhere; }
+  .day-memory, .day-pagination { width: 100%; }
+
+  .trip-topic-tabs { scroll-snap-type: x proximity; scrollbar-width: thin; }
+  .trip-topic-tabs button { flex: 0 0 138px; min-height: 46px; scroll-snap-align: start; }
+  .osaka-transport-guide { padding: 18px 14px; }
+  .trip-topic-panel, .osaka-transport-guide, .pass-route-tables,
+  .pass-route-tables > section, .pass-table-scroll { min-width: 0; max-width: 100%; }
+  .pass-route-tables { grid-template-columns: minmax(0, 1fr); }
+  .pass-table-scroll { width: 100%; overflow-x: auto; }
+  .transport-guide-heading > .transport-guide-intro-copy,
+  .transport-howto > ol { font-size: 13px; line-height: 1.8; }
+  .pass-rule-grid article { padding: 12px; }
+  .pass-table-scroll { max-width: 100%; overscroll-behavior-inline: contain; }
+  .pass-table-scroll::after { content: "표는 좌우로 밀어 볼 수 있어요"; display: block; padding: 7px 11px; color: #435248; background: #f6f8f3; font-size: 10px; }
+  .food-guide-heading h2 { font-size: clamp(26px, 7vw, 34px); }
+  .food-guide-heading > p { font-size: 13px; line-height: 1.85; }
+  .food-category-heading h3 { font-size: 16px; }
+  .food-category-heading .food-category-copy { font-size: 12px; }
+  .food-dish-title h4 { font-size: 14px; }
+  .food-dish-title > span { font-size: 11px; }
+  .food-dish-copy, .food-dish-card > p { font-size: 12px; line-height: 1.75; }
+  .food-dish-card { padding: 14px; }
+
+  .admin-shell { width: calc(100% - 32px); padding-block: 22px 56px; }
+  .admin-panel { padding: 17px; }
+  .admin-intro h1 { font-size: clamp(29px, 8vw, 40px); }
+  .editor-toolbar { padding-bottom: 20px; }
+  .editor-toolbar-actions { flex-wrap: wrap; gap: 12px; }
+  .editor-publish { min-height: 42px; }
+  .editor-toolbar-actions > button,
+  .editor-bottom-actions > button,
+  .admin-form-actions button { min-height: 44px; }
+  .editor-guide-row, .editor-guide-line, .editor-guide-step, .editor-guide-link,
+  .editor-food-dish { grid-template-columns: minmax(0, 1fr); }
+  .editor-guide-row textarea, .editor-guide-step textarea,
+  .editor-food-dish textarea { grid-column: auto; }
+  .editor-guide-group-heading input { width: 100%; }
+  .editor-inline-fields { min-width: 0; }
+  .editor-inline-fields input { min-width: 0; width: 100%; }
+  .admin-form-actions { gap: 12px; }
+  .admin-form-actions p { line-height: 1.65; }
+}
+
+@media (max-width: 430px) {
+  .page-wrap { width: calc(100% - 28px); }
+  .site-brand { font-size: 14px; }
+  .site-nav { gap: 0 8px; font-size: 11px; }
+  .site-nav-trip { max-width: 46%; }
+  .site-nav-trip span { flex: none; }
+
+  .home-heading { padding-top: 25px; }
+  .home-heading h1 { font-size: clamp(34px, 9.5vw, 42px); }
+  .trip-card { min-height: 390px; }
+  .trip-card h3 { font-size: clamp(27px, 8vw, 32px); }
+  .trip-card p { font-size: 11px; }
+  .trip-card-arrow { width: 42px; height: 42px; }
+  .section-topline h2 { font-size: 20px; }
+  .trip-count { font-size: 11px; }
+
+  .detail-hero { height: 255px; }
+  .detail-hero-copy h1 { font-size: 34px; }
+  .hero-back, .hero-edit-link { min-height: 38px; display: inline-flex; align-items: center; }
+  .trip-quick-info > div { grid-template-columns: 55px minmax(0, 1fr); }
+  .selected-day-heading h2 { font-size: 28px; }
+  .activity-heading-row--visual { grid-template-columns: minmax(0, 1fr) 86px; gap: 7px; }
+  .activity-destination-preview { height: 76px; }
+  .activity-destination-preview figcaption { font-size: 8px; }
+  .activity-card { padding: 14px; }
+  .activity-card h4 { font-size: 16px; }
+  .activity-map-icon { width: 29px; height: 29px; }
+
+  .trip-topic-tabs button { flex-basis: 128px; padding-inline: 8px; }
+  .food-dish-grid { grid-template-columns: 1fr; }
+  .food-guide-category { padding: 15px 12px; }
+  .food-dish-card { padding: 13px; }
+  .food-dish-copy, .food-dish-card > p { font-size: 12px; }
+  .food-guide-sources { display: grid; }
+  .food-guide-sources > div { gap: 10px; }
+
+  .admin-shell { width: calc(100% - 28px); }
+  .admin-panel { padding: 14px; }
+  .admin-trip-row { grid-template-columns: minmax(0, 1fr); padding-block: 9px; }
+  .admin-trip-open { grid-template-columns: 54px minmax(0, 1fr) 16px; gap: 8px; }
+  .admin-trip-open strong { font-size: 14px; overflow-wrap: anywhere; }
+  .admin-trip-delete { justify-self: end; min-height: 40px; }
+  .editor-inline-fields { grid-template-columns: minmax(0, 1fr); }
+  .editor-inline-fields input:nth-child(3) { grid-column: auto; }
+  .editor-activity { padding: 13px; }
+  .editor-activity-top { gap: 10px; }
+  .editor-activity-top button { min-width: 38px; min-height: 36px; }
+  .editor-bottom-actions { align-items: stretch; flex-direction: column; }
+  .editor-bottom-actions > button { width: 100%; }
+  .admin-form-actions button { width: 100%; }
+}
+
+@media (max-width: 360px) {
+  .site-nav { font-size: 10px; }
+  .site-nav-trip { max-width: 42%; }
+  .trip-card { min-height: 370px; }
+  .trip-card-bottom { left: 15px; right: 15px; }
+  .trip-card h3 { font-size: 27px; }
+  .activity-heading-row--visual { grid-template-columns: minmax(0, 1fr) 76px; }
+  .day-button { flex-basis: 144px; }
+}
