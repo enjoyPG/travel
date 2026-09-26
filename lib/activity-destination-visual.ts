@@ -36,9 +36,9 @@ const destinationVisuals: { match: RegExp; visual: ActivityDestinationVisual }[]
   {
     match: /오사카코 도착|오사카코/,
     visual: {
-      src: "/images/tempozan-bay.jpg",
-      alt: "대관람차와 유람선이 보이는 덴포잔 항구 전경",
-      label: "오사카코 · 덴포잔 항구",
+      src: "/images/osaka-aquarium-arrival.webp",
+      alt: "덴포잔의 가이유칸 수족관 외관과 입구 광장",
+      label: "가이유칸 · 오사카코 도착",
     },
   },
   {
@@ -76,16 +76,16 @@ const destinationVisuals: { match: RegExp; visual: ActivityDestinationVisual }[]
   {
     match: /쓰텐카쿠|츠텐카쿠|신세카이/,
     visual: {
-      src: "/images/osaka-shinsekai.png",
-      alt: "신세카이 거리와 쓰텐카쿠 타워",
+      src: "/images/shinsekai-tsutenkaku-day.webp",
+      alt: "낮의 신세카이 상점가 위로 보이는 쓰텐카쿠 타워",
       label: "신세카이 · 쓰텐카쿠",
     },
   },
   {
     match: /hep\s*five|우메다/i,
     visual: {
-      src: "/images/umeda-hep-five.jpg",
-      alt: "붉은 대관람차가 보이는 우메다 도심 야경",
+      src: "/images/hep-five-cabin-view.webp",
+      alt: "HEP FIVE 관람차 객실에서 내려다본 우메다 야경",
       label: "우메다 · HEP FIVE",
     },
   },
@@ -116,32 +116,32 @@ const destinationVisuals: { match: RegExp; visual: ActivityDestinationVisual }[]
   {
     match: /도톤보리.*리버\s*크루즈|돈보리.*리버\s*크루즈|돈보리.*크루즈/,
     visual: {
-      src: "/images/dotonbori-cruise.jpg",
-      alt: "도톤보리 운하를 따라 야간 운항하는 유람선",
+      src: "/images/dotonbori-cruise-boat.webp",
+      alt: "도톤보리 리버 크루즈 배 위에서 바라본 에비스바시와 글리코상",
       label: "돈보리 리버 크루즈",
     },
   },
   {
     match: /도톤보리.*야경.*산책/,
     visual: {
-      src: "/images/dotonbori-night-stroll.jpg",
-      alt: "음식점 조명이 이어지는 도톤보리 야간 골목",
+      src: "/images/dotonbori-neon-street.webp",
+      alt: "네온 간판과 인파로 붐비는 도톤보리 야간 거리",
       label: "도톤보리 야경 산책",
     },
   },
   {
     match: /도톤보리.*(산책|이른 저녁)/,
     visual: {
-      src: "/images/dotonbori-street-day.jpg",
-      alt: "해 질 무렵 도톤보리 운하 옆을 걷는 사람들",
+      src: "/images/dotonbori-street-day-v2.webp",
+      alt: "낮의 에비스바시와 글리코상이 보이는 도톤보리 운하",
       label: "도톤보리 산책",
     },
   },
   {
     match: /츠루하시.*(식사|점심|저녁|맛집|상점|시장|먹거리)/,
     visual: {
-      src: "/images/tsuruhashi-food-alley.jpg",
-      alt: "고깃집과 음식점이 모인 츠루하시 골목",
+      src: "/images/tsuruhashi-yakiniku-table.webp",
+      alt: "불판에 고기를 굽고 반찬을 곁들여 먹는 츠루하시 야키니쿠",
       label: "츠루하시 먹거리 골목",
     },
   },
