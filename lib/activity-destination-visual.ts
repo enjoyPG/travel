@@ -6,6 +6,8 @@ export type ActivityDestinationVisual = {
   label: string;
 };
 
+// Each specific stop has its own image. Broad area keywords are avoided so
+// multiple activities in the same neighborhood do not reuse one photo.
 const destinationVisuals: { match: RegExp; visual: ActivityDestinationVisual }[] = [
   {
     match: /유니버설|universal city|\busj\b/i,
@@ -16,19 +18,51 @@ const destinationVisuals: { match: RegExp; visual: ActivityDestinationVisual }[]
     },
   },
   {
-    match: /오사카성|오사카 성|고자부네/,
+    match: /고자부네/,
     visual: {
-      src: "/images/osaka-castle.jpg",
-      alt: "해자와 돌담 위에 세워진 오사카성 천수각",
-      label: "오사카성",
+      src: "/images/osaka-castle-gozabune.jpg",
+      alt: "오사카성 해자 위를 지나는 금빛 고자부네",
+      label: "오사카성 고자부네",
     },
   },
   {
-    match: /덴포잔|오사카코|산타마리아|레고랜드/,
+    match: /오사카성|오사카 성/,
+    visual: {
+      src: "/images/osaka-castle.jpg",
+      alt: "해자와 돌담 위에 세워진 오사카성 천수각",
+      label: "오사카성 천수각",
+    },
+  },
+  {
+    match: /오사카코 도착|오사카코/,
     visual: {
       src: "/images/tempozan-bay.jpg",
-      alt: "덴포잔 대관람차와 오사카 항구의 유람선",
-      label: "덴포잔 베이 에어리어",
+      alt: "대관람차와 유람선이 보이는 덴포잔 항구 전경",
+      label: "오사카코 · 덴포잔 항구",
+    },
+  },
+  {
+    match: /산타마리아|santa maria/i,
+    visual: {
+      src: "/images/santa-maria-cruise.jpg",
+      alt: "오사카항을 출발하는 돛대가 있는 산타마리아 크루즈선",
+      label: "산타마리아 데이 크루즈",
+    },
+  },
+  {
+    match: /레고랜드/,
+    visual: {
+      src: "/images/legoland-discovery.jpg",
+      alt: "블록으로 만든 오사카 미니어처가 있는 실내 디스커버리 센터",
+      label: "레고랜드 디스커버리 센터",
+    },
+  },
+  {
+    match: /덴포잔.*대관람차|대관람차.*덴포잔/,
+    visual: {
+      src: "/images/tempozan-wheel.jpg",
+      alt: "푸른 저녁 하늘 아래 불이 켜진 덴포잔 대관람차",
+      label: "덴포잔 대관람차",
     },
   },
   {
@@ -80,11 +114,27 @@ const destinationVisuals: { match: RegExp; visual: ActivityDestinationVisual }[]
     },
   },
   {
-    match: /도톤보리|돈보리|리버\s*크루즈|리버크루즈/,
+    match: /도톤보리.*리버\s*크루즈|돈보리.*리버\s*크루즈|돈보리.*크루즈/,
     visual: {
-      src: "/images/osaka-dotonbori.png",
-      alt: "간판과 다리가 비치는 도톤보리 운하의 저녁 풍경",
-      label: "도톤보리",
+      src: "/images/dotonbori-cruise.jpg",
+      alt: "도톤보리 운하를 따라 야간 운항하는 유람선",
+      label: "돈보리 리버 크루즈",
+    },
+  },
+  {
+    match: /도톤보리.*야경.*산책/,
+    visual: {
+      src: "/images/dotonbori-night-stroll.jpg",
+      alt: "음식점 조명이 이어지는 도톤보리 야간 골목",
+      label: "도톤보리 야경 산책",
+    },
+  },
+  {
+    match: /도톤보리.*(산책|이른 저녁)/,
+    visual: {
+      src: "/images/dotonbori-street-day.jpg",
+      alt: "해 질 무렵 도톤보리 운하 옆을 걷는 사람들",
+      label: "도톤보리 산책",
     },
   },
   {
@@ -98,6 +148,7 @@ const destinationVisuals: { match: RegExp; visual: ActivityDestinationVisual }[]
 ];
 
 export function getActivityDestinationVisual(activity: TripActivity): ActivityDestinationVisual | null {
-  const activityLabel = `${activity.title} ${activity.location ?? ""}`;
-  return destinationVisuals.find(({ match }) => match.test(activityLabel))?.visual ?? null;
+  const title = activity.title;
+  if ((/도톤보리|돈보리/.test(title) && /승선권|교환/.test(title))) return null;
+  return destinationVisuals.find(({ match }) => match.test(title))?.visual ?? null;
 }
