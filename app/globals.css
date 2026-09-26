@@ -939,6 +939,18 @@ button, input, textarea, select { line-height: 1.5; }
 .food-guide-sources > strong { font-size: 13px; }
 .pass-table-scroll::after { color: #34483a; font-size: 12px; }
 
+.term-highlight {
+  padding-inline: .08em;
+  border-radius: .22em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  font-weight: 750;
+}
+.term-highlight--place { color: #1e6244; background: #e5f2e8; }
+.term-highlight--transit { color: #205d87; background: #e6f2fc; }
+.term-highlight--pass { color: #7b4613; background: #fff0d3; }
+.term-highlight--food { color: #853b2b; background: #f9e8e1; }
+
 @media (max-width: 720px) {
   .site-nav { font-size: 13px; }
   .trip-card-top { font-size: 11px; }

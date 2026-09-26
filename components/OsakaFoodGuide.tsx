@@ -1,5 +1,5 @@
 import type { TripFoodGuide } from "@/data/trip-types";
-import { ReadableText } from "@/components/ReadableText";
+import { HighlightedText, ReadableText } from "@/components/ReadableText";
 
 export function OsakaFoodGuide({ guide }: { guide: TripFoodGuide }) {
   let dishNumber = 0;
@@ -7,18 +7,18 @@ export function OsakaFoodGuide({ guide }: { guide: TripFoodGuide }) {
   return <section className="osaka-food-guide" aria-labelledby="food-guide-title">
     <header className="food-guide-heading">
       <span className="section-index">OSAKA · FOOD CULTURE · 21 PICKS</span>
-      <h2 id="food-guide-title">{guide.title}</h2>
+      <h2 id="food-guide-title"><HighlightedText text={guide.title} /></h2>
       <ReadableText text={guide.intro} className="food-guide-intro-copy" />
     </header>
     <div className="food-guide-categories">
       {guide.categories.map((category, categoryIndex) => <section className="food-guide-category" key={`${category.title}-${categoryIndex}`}>
-        <div className="food-category-heading"><span>{String(categoryIndex + 1).padStart(2, "0")}</span><div><h3>{category.title}</h3><ReadableText text={category.intro} className="food-category-copy" /></div></div>
+        <div className="food-category-heading"><span>{String(categoryIndex + 1).padStart(2, "0")}</span><div><h3><HighlightedText text={category.title} /></h3><ReadableText text={category.intro} className="food-category-copy" /></div></div>
         <div className="food-dish-grid">
           {category.dishes.map((dish, dishIndex) => {
             dishNumber += 1;
             return <article className="food-dish-card" key={`${dish.name}-${dishIndex}`}>
               <span className="food-dish-number">{String(dishNumber).padStart(2, "0")}</span>
-              <div className="food-dish-title"><h4>{dish.name}</h4><span lang="ja">{dish.japanese}</span></div>
+              <div className="food-dish-title"><h4><HighlightedText text={dish.name} /></h4><span lang="ja">{dish.japanese}</span></div>
               <ReadableText text={dish.description} className="food-dish-copy" />
             </article>;
           })}
