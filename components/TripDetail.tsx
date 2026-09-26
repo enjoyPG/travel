@@ -12,6 +12,7 @@ import { defaultOsakaTransportGuide } from "@/data/osaka-transport-guide";
 import type { TripActivity, TripDocument, TripPhoto } from "@/data/trip-types";
 import { getTransportPayment, transportPaymentLabels } from "@/lib/transport-payment";
 import { getTransitMapLink } from "@/lib/google-maps-transit";
+import { getActivityDestinationVisual } from "@/lib/activity-destination-visual";
 
 const bookingTone = {
   required: "must",
@@ -37,8 +38,9 @@ function PhotoGallery({ photos }: { photos: TripPhoto[] }) {
   ))}</div>;
 }
 
-function ActivityCard({ activity, number, date, year }: { activity: TripActivity; number: number; date: string; year: number }) {
+function ActivityCard({ activity, number, date, year, showDestinationImages }: { activity: TripActivity; number: number; date: string; year: number; showDestinationImages: boolean }) {
   const isTransit = activity.title.startsWith("이동 ·") || activity.title.startsWith("귀환 ·");
+  const destinationVisual = showDestinationImages && !isTransit ? getActivityDestinationVisual(activity) : null;
   const transportPayment = getTransportPayment(activity);
   const mapLink = getTransitMapLink(activity, date, year);
   return (
@@ -50,8 +52,16 @@ function ActivityCard({ activity, number, date, year }: { activity: TripActivity
           <span className="activity-number">{isTransit ? "TRANSIT" : `STOP ${String(number).padStart(2, "0")}`}</span>
           {activity.booking && <span className={"booking-pill booking-" + bookingTone[activity.booking.kind]}>{bookingName[activity.booking.kind]}</span>}
         </div>
-        <h4>{activity.title}</h4>
-        {activity.location && <p className="activity-place"><span aria-hidden="true">⌖</span> {activity.location}</p>}
+        <div className={`activity-heading-row${destinationVisual ? " activity-heading-row--visual" : ""}`}>
+          <div className="activity-heading-copy">
+            <h4>{activity.title}</h4>
+            {activity.location && <p className="activity-place"><span aria-hidden="true">⌖</span> {activity.location}</p>}
+          </div>
+          {destinationVisual && <figure className="activity-destination-preview">
+            <Image src={destinationVisual.src} alt={destinationVisual.alt} width={600} height={400} sizes="(max-width: 720px) 34vw, 250px" />
+            <figcaption>장소 참고 이미지 · {destinationVisual.label}</figcaption>
+          </figure>}
+        </div>
         <ReadableText text={activity.description} className="activity-description" />
         {activity.transport && <div className={`activity-transport activity-transport--${isTransit ? transportPayment : "facility"}`}>
           <div className="activity-transport-head"><span className="transport-payment-badge">{isTransit ? transportPaymentLabels[transportPayment] : "시설 · 입장 정보"}</span><strong>{isTransit ? "🚇 이동·결제" : "🎟 이용 안내"}</strong></div>
@@ -164,7 +174,7 @@ export function TripDetail({ trip }: { trip: TripDocument }) {
               </div>
 
               <ol className="activity-list">
-                {day.activities.map((activity, index) => <ActivityCard activity={activity} number={index + 1} date={day.date} year={Number(year)} key={activity.id ?? index + "-" + activity.title} />)}
+                {day.activities.map((activity, index) => <ActivityCard activity={activity} number={index + 1} date={day.date} year={Number(year)} showDestinationImages={isOsakaTrip} key={activity.id ?? index + "-" + activity.title} />)}
               </ol>
               {day.activities.length === 0 && <p className="activity-empty">이날의 일정이 아직 없어요.</p>}
 
